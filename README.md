@@ -23,8 +23,30 @@ This repository contains the official implementation and dataset of the CVPR2024
 - PyTorch 1.13.0
 - cudatoolkit 11.7
 
+## Installation Dependences
+```bash
+git clone https://github.com/lucky9-cyou/Atlantis --recursive
+cd Atlantis
 
-## Usage
+# install pytorch
+conda create -n atlantis python=3.9
+conda install pytorch torchvision torchaudio pytorch-cuda=12.4 -c pytorch -c nvidia
+
+# install diffusers
+pip install --upgrade diffusers[torch]
+
+# install lavis
+pip install salesforce-lavis
+
+pip install transformers
+```
+
+## Inference
+### Step 1. Download the ControlNet weights
+Download the [Depth2Underwater](https://github.com/zkawfanx/Atlantis/releases/download/v1.0.0/Depth2Underwater.zip) ControlNet weights and unzip it into the `checkpoints` folder.
+
+
+## Training
 
 ![framework](assets/pipeline.png)
 
@@ -106,8 +128,6 @@ Then we install the requirements for the ControlNet example:
 cd examples/controlnet
 pip install -r requirements.txt
 ```
-
-
 
 Now we can start training the ControlNet with the prepared `{Underwater, Depth, Text}` triplets. For example, to train the ControlNet with the `stable-diffusion-v1-5` model, run the following command with ~20 GB VRAM:
 ```

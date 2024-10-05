@@ -9,9 +9,9 @@ from diffusers import (ControlNetModel, StableDiffusionControlNetPipeline,
 from diffusers.utils import load_image
 
 args = argparse.ArgumentParser()
-args.add_argument('--base_model_path', type=str, default='runwayml/stable-diffusion-v1-5')
-args.add_argument('--controlnet_path', type=str, default='/path/to/depth2underwater/controlnet')
-args.add_argument('--depth_dir', type=str, default='/path/to/terrestrial/depth')
+args.add_argument('--base_model_path', type=str, default='./checkpoints/sd-v1-5')
+args.add_argument('--controlnet_path', type=str, default='./checkpoints/control')
+args.add_argument('--image_dir', type=str, default='/path/to/terrestrial/depth')
 args.add_argument('--output_dir', type=str, default='/path/to/output/folder')
 args.add_argument('--sample_num', type=int, default=5)
 args = args.parse_args()
@@ -27,7 +27,7 @@ pipe.scheduler = UniPCMultistepScheduler.from_config(pipe.scheduler.config)
 pipe.enable_model_cpu_offload()
 
 
-paths = glob(os.path.join(args.depth_dir, '*.png'))
+paths = glob(os.path.join(args.image_dir, '*.png'))
 
 prompts = ["an underwater view of Atlantis", "a corner of lost Atlantis"]
 generator = torch.manual_seed(0)
