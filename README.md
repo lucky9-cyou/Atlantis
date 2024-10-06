@@ -39,6 +39,8 @@ pip install --upgrade diffusers[torch]
 pip install salesforce-lavis
 
 pip install transformers
+
+pip install timm
 ```
 
 ## Inference
